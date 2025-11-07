@@ -22,13 +22,12 @@ function isPasswordStrong(string $password): bool
  */
 function mb_ucfirst_fallback(string $str): string
 {
-    // Если доступна mb_ucfirst (PHP 8.4+), используем её
     if (function_exists('mb_ucfirst')) {
-        return mb_ucfirst($str, 'UTF-8'); // [web:186][web:194]
+        return mb_ucfirst($str, 'UTF-8');
     }
-    // Иначе — безопасная реализация через mb_substr/mb_strtoupper
-    $first = mb_strtoupper(mb_substr($str, 0, 1, 'UTF-8'), 'UTF-8'); // [web:187][web:188]
-    return $first . mb_substr($str, 1, null, 'UTF-8'); // [web:187][web:188]
+
+    $first = mb_strtoupper(mb_substr($str, 0, 1, 'UTF-8'), 'UTF-8');
+    return $first . mb_substr($str, 1, null, 'UTF-8');
 }
 
 // ЗАДАНИЕ 1: исходные данные
