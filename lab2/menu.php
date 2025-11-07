@@ -49,7 +49,6 @@ function getLeftMenu(): array
     function renderMenu(array $items): void
     {
         foreach ($items as $item) {
-            // Экранируем для безопасности вывода в HTML
             $text = htmlspecialchars($item['link'], ENT_QUOTES, 'UTF-8');
             $href = htmlspecialchars($item['href'], ENT_QUOTES, 'UTF-8');
             echo "<li><a href='{$href}'>{$text}</a></li>";

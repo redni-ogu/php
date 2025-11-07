@@ -14,17 +14,15 @@
  */
 function getTable(int $cols = 5, int $rows = 5, string $color = '#ffe680'): int
 {
-    static $count = 0; // сохраняет значение между вызовами
+    static $count = 0;
     $count++;
 
     // Нормализация границ
     $cols = max(1, min(10, $cols));
     $rows = max(1, min(10, $rows));
 
-    // Печать таблицы
     echo '<table>' . PHP_EOL;
 
-    // Первая строка заголовков: угол + 1..$cols
     echo '  <tr>' . PHP_EOL;
     echo '    <th style="text-align:center;background-color:' . htmlspecialchars($color, ENT_QUOTES, 'UTF-8') . ';">&times;</th>' . PHP_EOL;
     for ($c = 1; $c <= $cols; $c++) {
@@ -32,7 +30,6 @@ function getTable(int $cols = 5, int $rows = 5, string $color = '#ffe680'): int
     }
     echo '  </tr>' . PHP_EOL;
 
-    // Остальные строки: первый столбец — заголовок строки, далее произведения
     for ($r = 1; $r <= $rows; $r++) {
         echo '  <tr>' . PHP_EOL;
         echo '    <th style="text-align:center;background-color:' . htmlspecialchars($color, ENT_QUOTES, 'UTF-8') . ';">' . $r . '</th>' . PHP_EOL;
@@ -65,7 +62,7 @@ th, td {
   border: 1px solid black;
 }
 th {
-  background-color: yellow; /* Базовый цвет, перекрывается параметром $color */
+  background-color: yellow;
 }
 </style>
 </head>
@@ -76,19 +73,18 @@ th {
 // ЗАДАНИЕ 3 и 5: разные варианты вызова
 $total = 0;
 
-$total = getTable();                  // по умолчанию 5×5, цвет #ffe680
+$total = getTable();
 echo '<hr>';
 
-$total = getTable(7);                 // 7×5
+$total = getTable(7);
 echo '<hr>';
 
-$total = getTable(4, 6);              // 4×6
+$total = getTable(4, 6);
 echo '<hr>';
 
-$total = getTable(10, 10, 'lightblue'); // 10×10 с другим цветом
+$total = getTable(10, 10, 'lightblue');
 echo '<hr>';
 
-// Общее число вызовов:
 echo '<p>Всего вызовов getTable(): ' . $total . '</p>';
 ?>
 

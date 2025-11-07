@@ -19,19 +19,18 @@ function renderMultiplicationTable(int $rows, int $cols): string
 
     $html = '<table>' . PHP_EOL;
 
-    // Первая строка: пустой угол + заголовки столбцов
     $html .= '  <tr>' . PHP_EOL;
-    $html .= '    <th style="text-align:center;background-color:#ffe680;">&times;</th>' . PHP_EOL; // угол
+    $html .= '    <th style="text-align:center;background-color:#ffe680;">&times;</th>' . PHP_EOL;
     for ($c = 1; $c <= $cols; $c++) {
         $html .= '    <th style="text-align:center;background-color:#ffe680;">' . $c . '</th>' . PHP_EOL;
     }
     $html .= '  </tr>' . PHP_EOL;
 
-    // Остальные строки
+
     for ($r = 1; $r <= $rows; $r++) {
         $html .= '  <tr>' . PHP_EOL;
 
-        // Заголовок строки (первый столбец)
+        // Первый столб
         $html .= '    <th style="text-align:center;background-color:#ffe680;">' . $r . '</th>' . PHP_EOL;
 
         // Ячейки данных
@@ -67,18 +66,17 @@ td {
   border: 1px solid black;
 }
 th {
-  background-color: yellow; /* Базовый цвет заголовков; локально перекрывается #ffe680 */
+  background-color: yellow;
 }
 </style>
 </head>
 <body>
 <h1>Таблица умножения</h1>
 <?php
-// ЗАДАНИЕ 1: произвольные значения 1..10
+
 $cols = 7;
 $rows = 6;
 
-// ЗАДАНИЕ 2 и 3: вывод таблицы
 echo renderMultiplicationTable($rows, $cols);
 ?>
 </body>

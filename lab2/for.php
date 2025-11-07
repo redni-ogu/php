@@ -20,7 +20,7 @@ function printOddNumbers1to50(): void
 {
     // Перебор только нечётных: старт 1, шаг 2
     for ($i = 1; $i <= 50; $i += 2) {
-        echo $i . '<br>'; // Для HTML переноса строки используем <br>
+        echo $i . '<br>';
     }
 }
 

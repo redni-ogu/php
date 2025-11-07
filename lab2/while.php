@@ -21,19 +21,17 @@
  */
 function printCharsVertical(string $text): void
 {
-    // Разбиваем строку на массив символов с учетом UTF-8
-    // Если mb_str_split недоступна, можно использовать mb_substr в цикле (альтернатива).
-    $chars = mb_str_split($text, 1, 'UTF-8'); // Требуется PHP 7.4+ и расширение mbstring [web:43][web:41]
+    // Разбиваем строку на массив
+    $chars = mb_str_split($text, 1, 'UTF-8');
 
     $i = 0;
     $len = count($chars);
     while ($i < $len) {
-        echo htmlspecialchars($chars[$i], ENT_QUOTES, 'UTF-8') . '<br>'; // Для HTML переноса используем <br> [web:30][web:50][web:44]
+        echo htmlspecialchars($chars[$i], ENT_QUOTES, 'UTF-8') . '<br>';
         $i++;
     }
 }
 
-// ЗАДАНИЕ: $var = 'ПРИВЕТ' и вывод по одному символу в столбик
 $var = 'ПРИВЕТ';
 printCharsVertical($var);
 ?>

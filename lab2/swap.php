@@ -19,7 +19,6 @@ $swap($a, $b);
 $numbers = [1,2,3,4,5];
 $squares = map($numbers, fn (int $n): int => $n * $n);
 
-// Вспомогательная функция для вывода в консоль браузера
 function console_log(mixed $data, string $label = 'PHP'): void {
     $json = json_encode(['label' => $label, 'data' => $data], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);
     echo "<script>console.log($json);</script>";
