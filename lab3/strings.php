@@ -40,26 +40,18 @@ $code = '<?=$login?>';
 
 // ЗАДАНИЕ 2:
 
-// 1) login: trim + к нижнему регистру
-$login = mb_strtolower(trim($login), 'UTF-8'); // [web:189][web:188]
+$login = mb_strtolower(trim($login), 'UTF-8');
+$passwordOk = isPasswordStrong($password);
+$name = mb_ucfirst_fallback(mb_strtolower($name, 'UTF-8'));
+$isEmailValid = filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
 
-// 2) password: проверка сложности
-$passwordOk = isPasswordStrong($password); // [web:195][web:191]
-
-// 3) name: первая буква прописная (UTF‑8)
-$name = mb_ucfirst_fallback(mb_strtolower($name, 'UTF-8')); // [web:186][web:187]
-
-// 4) email: валидация через filter_var
-$isEmailValid = filter_var($email, FILTER_VALIDATE_EMAIL) !== false; // [web:196][web:200]
-
-// 5) code: вывести в браузер буквально как в коде — экранируем спецсимволы
-$codeLiteral = htmlspecialchars($code, ENT_QUOTES, 'UTF-8'); // [web:205][web:201]
+$codeLiteral = htmlspecialchars($code, ENT_QUOTES, 'UTF-8');
 
 // Демонстрация результата
 echo '<pre>';
-echo "login: {$login}\n";                          // user
+echo "login: {$login}\n";
 echo "password strong: " . ($passwordOk ? 'yes' : 'no') . "\n";
-echo "name: {$name}\n";                            // Иван
+echo "name: {$name}\n";
 echo "email valid: " . ($isEmailValid ? 'yes' : 'no') . "\n";
-echo "code literal: {$codeLiteral}\n";             // выводит '<?=$login?>' как текст
+echo "code literal: {$codeLiteral}\n";
 echo '</pre>';

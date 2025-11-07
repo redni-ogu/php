@@ -28,7 +28,6 @@ function getWelcomeByHour(int $hour): string
  */
 function buildRuFormatter(): IntlDateFormatter
 {
-    // Полная дата + полное время для ru_RU и текущего часового пояса
     return datefmt_create(
         'ru_RU',
         IntlDateFormatter::FULL,
@@ -47,7 +46,7 @@ function buildRuFormatter(): IntlDateFormatter
  */
 function diffToNextBirthday(DateTimeImmutable $birthdayДата, DateTimeImmutable $now): DateInterval
 {
-    // День рождения в текущем году
+    // День рождения в этом году
     $currentYear = (int) $now->format('Y');
     $next = $birthdayДата->setDate($currentYear, (int)$birthdayДата->format('m'), (int)$birthdayДата->format('d'));
 
@@ -59,29 +58,27 @@ function diffToNextBirthday(DateTimeImmutable $birthdayДата, DateTimeImmutab
 }
 
 // ЗАДАНИЕ 1
-$nowTs = time();                                  // текущая метка времени [web:209][web:208]
-$birthdayTs = strtotime('1995-09-01');            // пример: заменить на вашу дату рождения [web:206][web:214]
-
-$hour = getdate($nowTs)['hours'];                 // текущий час 0..23 [web:219][web:223]
+$nowTs = time();
+$birthdayTs = strtotime('2004-12-30');
+$hour = getdate($nowTs)['hours'];
 
 // ЗАДАНИЕ 2
 $welcome = getWelcomeByHour($hour);
 echo "<p>{$welcome}</p>";
 
-// Локаль ru_RU.UTF-8 (для форматтера ICU локаль указываем при создании)
-setlocale(LC_ALL, 'ru_RU.UTF-8');                 // может требовать установленную локаль в системе [web:217][web:213]
+setlocale(LC_ALL, 'ru_RU.UTF-8');
 
-// Форматированная дата/время: "Сегодня 1 сентября 2018 года, суббота 09:30:00"
-$fmt = buildRuFormatter();                         // FULL дата и FULL время [web:216]
-$formatted = datefmt_format($fmt, $nowTs);         // [web:216]
+// Форматированная дата/время
+$fmt = buildRuFormatter();
+$formatted = datefmt_format($fmt, $nowTs);
 echo "<p>Сегодня {$formatted}</p>";
 
 // До дня рождения осталось ...
-$now = new DateTimeImmutable('now');               // текущий момент
-$birthdayDate = (new DateTimeImmutable('@' . $birthdayTs))->setTimezone($now->getTimezone()); // выравниваем TZ
+$now = new DateTimeImmutable('now');
+$birthdayDate = (new DateTimeImmutable('@' . $birthdayTs))->setTimezone($now->getTimezone());
 
-$diff = diffToNextBirthday($birthdayDate, $now);   // [web:222]
-$days = $diff->days;                               // общее число дней
+$diff = diffToNextBirthday($birthdayDate, $now);
+$days = $diff->days;
 $hours = $diff->h;
 $minutes = $diff->i;
 $seconds = $diff->s;

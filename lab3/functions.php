@@ -12,13 +12,13 @@ function dumpExtensionFunctions(): void
     $total = 0;
 
     // Получаем список всех загруженных расширений
-    $extensions = get_loaded_extensions(); // [web:246][web:259]
+    $extensions = get_loaded_extensions();
 
     sort($extensions, SORT_STRING | SORT_FLAG_CASE);
 
     foreach ($extensions as $ext) {
-        // Некоторые реализации требуют нижний регистр для get_extension_funcs
-        $funcs = get_extension_funcs(strtolower($ext)) ?: get_extension_funcs($ext); // [web:260][web:251]
+        // Чтобы не было потом багов, всё переведём в нижний кейс
+        $funcs = get_extension_funcs(strtolower($ext)) ?: get_extension_funcs($ext);
 
         echo '<h2>' . htmlspecialchars($ext, ENT_QUOTES, 'UTF-8') . '</h2>';
 
