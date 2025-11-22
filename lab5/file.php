@@ -27,7 +27,7 @@ function saveGuest(string $firstName, string $lastName): void
     $line = $firstName . ' ' . $lastName . PHP_EOL;
 
     // Запись в файл с добавлением в конец
-    file_put_contents(GUESTBOOK_FILE, $line, FILE_APPEND | LOCK_EX); // fopen+fwrite+fclose в одном вызове[web:386][web:383][web:389]
+    file_put_contents(GUESTBOOK_FILE, $line, FILE_APPEND | LOCK_EX);
 }
 
 // ЗАДАНИЕ 1: обработка отправки формы
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     saveGuest($_POST['fname'] ?? '', $_POST['lname'] ?? '');
 
     // Перезапрос страницы, чтобы избежать повторной отправки POST
-    header('Location: ' . htmlspecialchars($_SERVER['PHP_SELF'], ENT_QUOTES, 'UTF-8')); // [web:361][web:373][web:370]
+    header('Location: ' . htmlspecialchars($_SERVER['PHP_SELF'], ENT_QUOTES, 'UTF-8'));
     exit;
 }
 ?>
@@ -58,8 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <?php
 // ЗАДАНИЕ 2: вывод содержимого файла
-if (file_exists(GUESTBOOK_FILE)) { // [web:389][web:392][web:386]
-    $lines = file(GUESTBOOK_FILE, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES); // [web:389][web:392][web:386]
+if (file_exists(GUESTBOOK_FILE)) {
+    $lines = file(GUESTBOOK_FILE, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
     if (!empty($lines)) {
         echo '<h2>Список пользователей</h2>';
