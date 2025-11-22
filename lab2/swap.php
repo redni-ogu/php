@@ -17,8 +17,6 @@ function map(array $items, callable $cb): array {
 $a = 5; $b = 8;
 console_log(['a' => $a, 'b' => $b], 'до swap');
 $swap($a, $b);
-$numbers = [1,2,3,4,5];
-$squares = map($numbers, fn (int $n): int => $n * $n);
 
 function console_log(mixed $data, string $label = 'PHP'): void {
     $json = json_encode(['label' => $label, 'data' => $data], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP);
@@ -28,4 +26,3 @@ function console_log(mixed $data, string $label = 'PHP'): void {
 // Логи в консоль браузера
 
 console_log(['a' => $a, 'b' => $b], 'swap result');
-console_log($squares, 'squares');
