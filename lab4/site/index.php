@@ -5,8 +5,8 @@ require_once __DIR__ . '/inc/lib.inc.php';
 require_once __DIR__ . '/inc/data.inc.php';
 
 // Текущее время
-$now  = getdate();                     // массив с текущей датой/временем [web:219][web:207]
-$hour = (int) ($now['hours'] ?? 0);    // текущий час 0..23 [web:219][web:223]
+$now  = getdate();
+$hour = (int) ($now['hours'] ?? 0);
 
 // Приветствие по времени суток
 if ($hour >= 0 && $hour < 6) {
