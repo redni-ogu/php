@@ -57,11 +57,7 @@ switch ($id) {
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-    <!-- Верхняя часть страницы -->
-    <?php include __DIR__ . '/inc/top.inc.php'; ?>
-    <!-- Верхняя часть страницы -->
-</header>
+<?php include __DIR__ . '/inc/top.inc.php'; ?>
 
 <section>
     <!-- Заголовок -->
