@@ -17,8 +17,6 @@ if (isset($_GET['del'])) {
     $delId = trim($_GET['del']);
     $delId = htmlspecialchars($delId, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
     $delId = mysqli_real_escape_string($link, $delId);
-
-    // Дополнительно приводим к целому
     $delId = (int)$delId;
 
     if ($delId > 0) {
@@ -54,7 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         mysqli_query($link, $sql);
     }
 
-    // Перезапрос страницы, чтобы убрать POST‑данные
     header('Location: ' . $_SERVER['PHP_SELF']);
     exit;
 }

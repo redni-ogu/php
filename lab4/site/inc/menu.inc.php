@@ -8,5 +8,5 @@
             ['link' => 'Таблица умножения', 'href' => 'index.php?id=table'],
             ['link' => 'Калькулятор',       'href' => 'index.php?id=calc'],
     ];
-    getMenu($leftMenu, false); ?>
+    getMenu($leftMenu, true); ?>
 </nav>
