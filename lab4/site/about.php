@@ -2,9 +2,6 @@
 
 <!-- Область основного контента -->
 <article class="page-about">
-    <header class="page-about__header">
-        <h2>О нашем сайте</h2>
-    </header>
 
     <section class="page-about__section">
         <p>

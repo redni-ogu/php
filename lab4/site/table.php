@@ -36,9 +36,6 @@ $rows = max(1, min(10, $rows));
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-    <?php include __DIR__ . '/inc/top.inc.php'; ?>
-</header>
 
 <section>
     <h1>Таблица умножения</h1>
@@ -70,14 +67,5 @@ $rows = max(1, min(10, $rows));
     <?php drawTable($cols, $rows, $color); ?>
     <!-- Таблица -->
 </section>
-
-<nav>
-    <h2>Навигация по сайту</h2>
-    <?php include __DIR__ . '/inc/menu.inc.php'; ?>
-</nav>
-
-<footer>
-    <?php include __DIR__ . '/inc/bottom.inc.php'; ?>
-</footer>
 </body>
 </html>

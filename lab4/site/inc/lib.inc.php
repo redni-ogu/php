@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 /**
  * Печатает HTML-таблицу умножения размера rows × cols с цветом заголовков color.

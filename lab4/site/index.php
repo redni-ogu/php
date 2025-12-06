@@ -26,7 +26,7 @@ $title  = 'Сайт нашей школы';
 $header = "$welcome, Гость!";
 
 // Читаем id из GET-параметра, приводим к нижнему регистру и чистим
-$id = strtolower(strip_tags(trim($_GET['id'] ?? ''))); // isset/?? защищает от Undefined index [web:315][web:219]
+$id = strtolower(strip_tags(trim($_GET['id'] ?? ''))); // isset/?? защищает от Undefined index
 
 // Меняем заголовки в зависимости от id
 switch ($id) {
@@ -89,18 +89,8 @@ switch ($id) {
     <!-- Область основного контента -->
 </section>
 
-<nav>
-    <h2>Навигация по сайту</h2>
-    <?php include __DIR__ . '/inc/menu.inc.php'; ?>
-</nav>
+<?php include __DIR__ . '/inc/menu.inc.php'; ?>
+<?php include __DIR__ . '/inc/bottom.inc.php'; ?>
 
-<footer>
-    <!-- Нижняя часть страницы -->
-    <?php
-    $year = getdate()['year'] ?? date('Y');  // текущий год [web:219][web:209]
-    ?>
-    &copy; Супер Мега Веб-мастер, 2000 &ndash; <?=$year?>
-    <!-- Нижняя часть страницы -->
-</footer>
 </body>
 </html>
