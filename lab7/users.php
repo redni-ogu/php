@@ -1,15 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Автозагрузчик классов из пространства имён MyProject\Classes.
- *
- * Преобразует полное имя класса (например, MyProject\Classes\User)
- * в путь к файлу (MyProject/Classes/User.php) и подключает его.
- *
- * @param string $class Полное имя класса с пространством имён.
- * @return void
- */
 spl_autoload_register(function (string $class): void {
     // Префикс нашего пространства имён
     $prefix = 'MyProject\\Classes\\';
