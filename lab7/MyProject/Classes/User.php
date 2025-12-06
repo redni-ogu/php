@@ -1,39 +1,96 @@
 <?php
 namespace MyProject\Classes;
 
+/**
+ * Класс пользователя.
+ *
+ * Содержит основные данные о пользователе (имя, логин, пароль)
+ * и методы для получения информации и вывода её на экран.
+ */
 class User
 {
-public $name;
-public $login;
+    /**
+     * Имя пользователя.
+     *
+     * @var string
+     */
+    public $name;
 
-private $password;
+    /**
+     * Логин пользователя.
+     *
+     * @var string
+     */
+    public $login;
 
-function __construct($name, $login, $password){
-    $this->name = $name;
-    $this->login = $login;
-    $this->password = $password;
-}
+    /**
+     * Пароль пользователя.
+     *
+     * @var string
+     */
+    private $password;
 
-function getName(){
-    return $this->name;
-}
+    /**
+     * Конструктор пользователя.
+     *
+     * @param string $name     Имя пользователя.
+     * @param string $login    Логин пользователя.
+     * @param string $password Пароль пользователя.
+     */
+    public function __construct($name, $login, $password){
+        $this->name     = $name;
+        $this->login    = $login;
+        $this->password = $password;
+    }
 
-function getLogin(){
-    return $this->login;
-}
+    /**
+     * Возвращает имя пользователя.
+     *
+     * @return string Имя пользователя.
+     */
+    public function getName(){
+        return $this->name;
+    }
 
-function getPassword(){
-    return $this->password;
-}
+    /**
+     * Возвращает логин пользователя.
+     *
+     * @return string Логин пользователя.
+     */
+    public function getLogin(){
+        return $this->login;
+    }
 
-function showInfo(){
-    echo 'Имя: ' . $this->name . '<br />';
-    echo 'Логин: ' . $this->login . '<br />';
-    echo 'Пароль: ' . $this->password . '<br />';
-}
+    /**
+     * Возвращает пароль пользователя.
+     *
+     * @return string Пароль пользователя.
+     */
+    public function getPassword(){
+        return $this->password;
+    }
 
-function __destruct(){
-    echo "Пользователь {$this->getLogin()} удалён";
-}
+    /**
+     * Выводит информацию о пользователе:
+     * имя, логин и пароль.
+     *
+     * @return void
+     */
+    public function showInfo(){
+        echo 'Имя: '    . $this->name     . '<br />';
+        echo 'Логин: '  . $this->login    . '<br />';
+        echo 'Пароль: ' . $this->password . '<br />';
+        echo '<hr>';
+    }
 
+    /**
+     * Деструктор пользователя.
+     *
+     * Выводит сообщение об удалении пользователя.
+     *
+     * @return void
+     */
+    public function __destruct(){
+        echo "Пользователь {$this->getLogin()} удалён<br>";
+    }
 }
