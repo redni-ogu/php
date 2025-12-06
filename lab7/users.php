@@ -14,8 +14,9 @@ spl_autoload_register(function (string $class): void {
     // Префикс нашего пространства имён
     $prefix = 'MyProject\\Classes\\';
 
-    // Базовая директория для классов
-    $baseDir = __DIR__ . 'MyProject/Classes/';
+    // Базовая директория для классов относительно users.php
+    // (users.php в lab7, классы в lab7/MyProject/Classes)
+    $baseDir = __DIR__ . '/MyProject/Classes/';
 
     // Если класс не из нашего пространства имён — пропускаем
     if (strpos($class, $prefix) !== 0) {
