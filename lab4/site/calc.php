@@ -55,9 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['num1'], $_GET['num2'], 
 </head>
 <body>
 <section>
-    <!-- Заголовок -->
-    <h1>Калькулятор школьника</h1>
-    <!-- Заголовок -->
 
     <!-- Вывод ошибки / результата -->
     <?php if ($error !== ''): ?>

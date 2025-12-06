@@ -38,8 +38,6 @@ $rows = max(1, min(10, $rows));
 <body>
 
 <section>
-    <h1>Таблица умножения</h1>
-
     <form action="<?=$_SERVER['REQUEST_URI']?>" method="post">
         <label>Количество колонок: </label><br>
         <input name="cols" type="number" min="1" max="10"
