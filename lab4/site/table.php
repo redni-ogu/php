@@ -1,69 +1,53 @@
-<?php declare(strict_types=1); ?>
-
 <?php
-require_once __DIR__ . '/inc/lib.inc.php';
-require_once __DIR__ . '/inc/data.inc.php';
+// Устанавливаем значения по умолчанию
+$default_cols = 5;
+$default_rows = 7;
+$default_color = '#90ee90';
 
-// Инициализация значений
-$cols  = 0;
-$rows  = 0;
-$color = '';
-
-// Обработка POST-запроса
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $cols  = abs((int) ($_POST['cols']  ?? 0));
-    $rows  = abs((int) ($_POST['rows']  ?? 0));
-    $color = trim(strip_tags($_POST['color'] ?? ''));
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $cols = abs((int) $_POST['cols']);
+    $rows = abs((int) $_POST['rows']);
+    $color = trim(strip_tags($_POST['color']));
 }
 
-// Значения по умолчанию
-$cols  = $cols  ?: 10;
-$rows  = $rows  ?: 10;
-$color = $color ?: '#ffff00';
-
-// Нормализация: ограничим 1..10 для размеров
-$cols = max(1, min(10, $cols));
-$rows = max(1, min(10, $rows));
+$cols = ($cols) ? $cols : $default_cols;
+$rows = ($rows) ? $rows : $default_rows;
+$color = ($color) ? $color : $default_color;
 ?>
-
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Таблица умножения</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<section>
-    <form action="<?=$_SERVER['REQUEST_URI']?>" method="post">
-        <label>Количество колонок: </label><br>
-        <input name="cols" type="number" min="1" max="10"
-               value="<?=htmlspecialchars((string)$cols, ENT_QUOTES, 'UTF-8')?>"><br>
-
-        <label>Количество строк: </label><br>
-        <input name="rows" type="number" min="1" max="10"
-               value="<?=htmlspecialchars((string)$rows, ENT_QUOTES, 'UTF-8')?>"><br>
-
-        <label>Цвет: </label><br>
-        <input name="color" type="color"
-               value="<?=htmlspecialchars($color, ENT_QUOTES, 'UTF-8')?>"
-               list="listColors">
-        <datalist id="listColors">
-            <option>#ff0000</option>
-            <option>#00ff00</option>
-            <option>#0000ff</option>
-        </datalist>
-        <br><br>
-        <input type="submit" value="Создать">
-    </form>
-
+<!-- Область основного контента -->
+<h3>Таблица умножения</h3>
+<form action='<?=$_SERVER['REQUEST_URI']?>' method='POST'>
+    <label>Количество колонок: </label>
     <br>
-    <!-- Таблица -->
-    <?php drawTable($cols, $rows, $color); ?>
-    <!-- Таблица -->
-</section>
-</body>
-</html>
+    <input name='cols' type='text' value='<?=isset($_POST['cols']) ? htmlspecialchars($_POST['cols']) : $default_cols?>'>
+    <br>
+    <label>Количество строк: </label>
+    <br>
+    <input name='rows' type='text' value='<?=isset($_POST['rows']) ? htmlspecialchars($_POST['rows']) : $default_rows?>'>
+    <br>
+    <label>Цвет: </label>
+    <br>
+    <input name='color' type='color' value='<?=isset($_POST['color']) ? htmlspecialchars($_POST['color']) : $default_color?>'>
+    <br>
+    <small>Или выберите из списка: </small>
+    <select onchange="document.querySelector('input[name=color]').value = this.value">
+        <option value="#90ee90">Светло-зеленый</option>
+        <option value="#ff0000">Красный</option>
+        <option value="#00ff00">Зеленый</option>
+        <option value="#0000ff">Синий</option>
+        <option value="#ffff00">Желтый</option>
+        <option value="#ff00ff">Пурпурный</option>
+        <option value="#00ffff">Бирюзовый</option>
+    </select>
+    <br>
+    <br>
+    <input type='submit' value='Создать'>
+</form>
+<br>
+<!-- Таблица -->
+<?php 
+// Вызываем функцию getTable() с параметрами
+getTable($rows, $cols, $color);
+?>
+<!-- Таблица -->
+<!-- Область основного контента -->

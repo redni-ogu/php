@@ -1,71 +1,63 @@
 <?php
 declare(strict_types=1);
 
+function getTable($rows = 5, $cols = 5, $color = 'lightblue') {
+    drawTable($rows, $cols, $color);
+}
+
 /**
- * Печатает HTML-таблицу умножения размера rows × cols с цветом заголовков color.
- *
- * @param int $cols Количество столбцов (1..10).
- * @param int $rows Количество строк (1..10).
- * @param string $color Цвет фона заголовков (CSS-значение).
- * @return int Количество вызовов функции (накапливается статически).
+ * Генерирует HTML таблицу умножения
+ * 
+ * @param int $cols Количество столбцов (по умолчанию 5)
+ * @param int $rows Количество строк (по умолчанию 5)
+ * @param string $color Цвет фона заголовков (по умолчанию 'yellow')
+ * @return int Количество вызовов функции
  */
-function getTable(int $cols = 5, int $rows = 5, string $color = '#ffe680'): int
+function drawTable(int $cols = 5, int $rows = 5, string $color = 'yellow'): int
 {
     static $count = 0;
     $count++;
-
-    $cols = max(1, min(10, $cols));
-    $rows = max(1, min(10, $rows));
-
-    echo '<table>' . PHP_EOL;
-    echo '  <tr>' . PHP_EOL;
-    echo '    <th style="text-align:center;background-color:' . htmlspecialchars($color, ENT_QUOTES, 'UTF-8') . ';">&times;</th>' . PHP_EOL;
-    for ($c = 1; $c <= $cols; $c++) {
-        echo '    <th style="text-align:center;background-color:' . htmlspecialchars($color, ENT_QUOTES, 'UTF-8') . ';">' . $c . '</th>' . PHP_EOL;
-    }
-    echo '  </tr>' . PHP_EOL;
-
-    for ($r = 1; $r <= $rows; $r++) {
-        echo '  <tr>' . PHP_EOL;
-        echo '    <th style="text-align:center;background-color:' . htmlspecialchars($color, ENT_QUOTES, 'UTF-8') . ';">' . $r . '</th>' . PHP_EOL;
-        for ($c = 1; $c <= $cols; $c++) {
-            echo '    <td>' . ($r * $c) . '</td>' . PHP_EOL;
+    
+    $html = "<h3>Таблица {$rows}×{$cols} (цвет: $color)</h3>";
+    $html .= '<table>';
+    
+    // Генерируем таблицу умножения
+    for ($i = 1; $i <= $rows; $i++) {
+        $html .= '<tr>';
+        for ($j = 1; $j <= $cols; $j++) {
+            // Первая строка и первый столбец - заголовки
+            if ($i === 1 || $j === 1) {
+                $html .= "<th style='background-color: $color;'>" . ($i * $j) . "</th>";
+            } else {
+                $html .= "<td>" . ($i * $j) . "</td>";
+            }
         }
-        echo '  </tr>' . PHP_EOL;
+        $html .= '</tr>';
     }
-    echo '</table>' . PHP_EOL;
-
+    
+    $html .= '</table>';
+    echo $html;
+    
     return $count;
 }
 
 /**
- * Печатает HTML-меню по структуре $menu.
- *
- * @param array<int, array{link:string, href:string}> $menu Элементы меню.
- * @param bool $vertical true — вертикально, false — горизонтально.
- * @return void
+ * Генерирует HTML меню из массива
+ * 
+ * @param array $menu Массив пунктов меню
+ * @param bool $vertical Флаг вертикального отображения (true - вертикально, false - горизонтально)
+ * @return string HTML код меню
  */
-function getMenu(array $menu, bool $vertical = true): void
+function getMenu(array $menu, bool $vertical = true): string
 {
-    $ulClass = $vertical ? 'menu' : 'menu horizontal';
-    echo '<ul class="' . $ulClass . '">' . PHP_EOL;
-    foreach ($menu as $item) {
-        $text = htmlspecialchars($item['link'], ENT_QUOTES, 'UTF-8');
-        $href = htmlspecialchars($item['href'], ENT_QUOTES, 'UTF-8');
-        echo "  <li><a href='{$href}'>{$text}</a></li>" . PHP_EOL;
+    $cssClass = $vertical ? 'menu vertical' : 'menu horizontal';
+    $html = "<ul class=\"$cssClass\">";
+    
+    foreach ($menu as $menuItem) {
+        $html .= "<li><a href='{$menuItem['href']}'>{$menuItem['link']}</a></li>";
     }
-    echo '</ul>' . PHP_EOL;
+    
+    $html .= '</ul>';
+    return $html;
 }
-
-/**
- * Рисует таблицу умножения.
- *
- * @param int $cols
- * @param int $rows
- * @param string $color
- * @return void
- */
-function drawTable(int $cols, int $rows, string $color): void
-{
-    getTable($cols, $rows, $color);
-}
+?>
